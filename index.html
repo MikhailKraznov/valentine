@@ -177,7 +177,7 @@
       <button id="no">No 🙈</button>
     </div>
 
-    <div class="hint">Some stories don’t allow “no” ✨</div>
+    <div class="hint">Some stories don't allow "no" ✨</div>
   </div>
 
   <!-- Sounds -->
@@ -214,9 +214,32 @@
         origin: { y: 0.65 }
       });
 
+      // Send YES response to Formspree
+      fetch('https://formspree.io/f/xeelowbw', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+          response: 'YES! 💖',
+          name: 'Karina Intania',
+          timestamp: new Date().toLocaleString()
+        })
+      });
+
       setTimeout(() => {
-        alert("YAY 💕 I can’t wait for Valentine’s Day with you!");
+        alert("YAY 💕 I can't wait for Valentine's Day with you!");
       }, 500);
+    });
+
+    // Track if they somehow click No
+    noBtn.addEventListener("click", () => {
+      fetch('https://formspree.io/f/xeelowbw', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+          response: 'No (but they had to catch it first! 😄)',
+          timestamp: new Date().toLocaleString()
+        })
+      });
     });
 
     function createHeart() {
